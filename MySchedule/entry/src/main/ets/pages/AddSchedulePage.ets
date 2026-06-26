@@ -319,13 +319,20 @@ struct AddSchedulePage {
         ForEach(this.categories, (cat: CategoryDef) => {
           Text(cat.name)
             .fontSize(13)
-            .fontColor(this.category === cat.key ? Color.White : Theme.getCategoryColor(cat.key))
-            .backgroundColor(this.category === cat.key
-              ? Theme.getCategoryColor(cat.key)
-              : Theme.getCategoryColor(cat.key) + '15')
+            .fontColor(this.category === cat.key ? Color.White : Theme.TEXT_SECONDARY)
+            .backgroundColor(this.category === cat.key ? Theme.PRIMARY : Theme.CARD)
             .borderRadius(20)
             .padding({ left: 18, right: 18, top: 8, bottom: 8 })
             .margin({ right: 8, bottom: 8 })
+            .border({
+              width: { top: 1, bottom: 1, left: 1, right: 1 },
+              color: {
+                top: this.category === cat.key ? Theme.PRIMARY : Theme.DIVIDER,
+                bottom: this.category === cat.key ? Theme.PRIMARY : Theme.DIVIDER,
+                left: this.category === cat.key ? Theme.PRIMARY : Theme.DIVIDER,
+                right: this.category === cat.key ? Theme.PRIMARY : Theme.DIVIDER
+              }
+            })
             .onClick(() => {
               this.selectCategory(cat)
             })
