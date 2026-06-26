@@ -383,7 +383,7 @@ struct StatsPage {
           })
       }
       .width('100%')
-      .padding(16)
+      .padding(20)
       .backgroundColor(Theme.CARD)
       .borderRadius(14)
       .shadow({
@@ -408,7 +408,7 @@ struct StatsPage {
             .margin({ top: 4 })
         }
         .layoutWeight(1)
-        .padding(16)
+        .padding(20)
         .backgroundColor(Theme.PRIMARY_BG)
         .borderRadius(12)
         .alignItems(HorizontalAlign.Center)
@@ -434,7 +434,7 @@ struct StatsPage {
             .margin({ top: 4 })
         }
         .layoutWeight(1)
-        .padding(16)
+        .padding(20)
         .backgroundColor(Theme.SUCCESS_LIGHT)
         .borderRadius(12)
         .alignItems(HorizontalAlign.Center)
@@ -510,7 +510,7 @@ struct StatsPage {
         .alignItems(VerticalAlign.Center)
       }
       .width('100%')
-      .padding(16)
+      .padding(20)
       .backgroundColor(Theme.CARD)
       .borderRadius(14)
       .shadow({

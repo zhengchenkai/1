@@ -150,14 +150,14 @@ struct SchedulePage {
     Row() {
       Column()
         .width(4)
-        .height('100%')
+        .height(48)
+        .borderRadius(2)
         .backgroundColor(item.color)
-        .borderRadius({ topLeft: 12, bottomLeft: 12 })
 
-      Column({ space: 8 }) {
+      Column({ space: 6 }) {
         Row() {
           Text(item.title)
-            .fontSize(16)
+            .fontSize(15)
             .fontWeight(FontWeight.Medium)
             .fontColor(Theme.TEXT_PRIMARY)
             .layoutWeight(1)
@@ -184,12 +184,14 @@ struct SchedulePage {
         }
       }
       .layoutWeight(1)
-      .padding({ left: 12, right: 16, top: 14, bottom: 14 })
+      .alignItems(HorizontalAlign.Start)
+      .margin({ left: 12 })
     }
     .width('100%')
+    .padding(16)
     .backgroundColor(Theme.CARD)
     .borderRadius(12)
-    .clip(true)
+    .alignItems(VerticalAlign.Center)
     .onClick(() => {
       const routerParams: Record<string, Object> = {};
       routerParams['id'] = item.id;
@@ -198,7 +200,7 @@ struct SchedulePage {
         params: routerParams
       })
     })
-    .shadow({ radius: 4, color: Theme.SHADOW, offsetY: 2 })
+    .shadow({ radius: 8, color: Theme.SHADOW, offsetX: 0, offsetY: 2 })
     .animation({ duration: 150 })
   }
 

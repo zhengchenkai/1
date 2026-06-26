@@ -144,23 +144,12 @@ struct CheckinPage {
       Scroll() {
         Column() {
           // ----- 日程打卡列表 -----
-          Row() {
-            Text('今日日程')
-              .fontSize(16)
-              .fontWeight(FontWeight.Medium)
-              .fontColor(Theme.TEXT_PRIMARY)
-          }
-          .width('100%')
-          .padding({ left: 16, right: 16, top: 12, bottom: 12 })
-          .backgroundColor(Theme.CARD)
-          .borderRadius(12)
-          .shadow({
-            radius: 4,
-            color: Theme.SHADOW,
-            offsetX: 0,
-            offsetY: 2
-          })
-          .margin({ bottom: 12 })
+          Text('今日日程')
+            .fontSize(16)
+            .fontWeight(FontWeight.Medium)
+            .fontColor(Theme.TEXT_PRIMARY)
+            .margin({ bottom: 12 })
+            .alignSelf(ItemAlign.Start)
 
           if (this.isLoading) {
             Row() {
