@@ -125,9 +125,9 @@ struct StatsPage {
     }
 
     const barCount: number = records.length;
-    const sidePadding: number = 12;
-    const topPadding: number = 16;
-    const bottomPadding: number = 36;
+    const sidePadding: number = 20;
+    const topPadding: number = 24;
+    const bottomPadding: number = 44;
     const chartH: number = h - topPadding - bottomPadding;
     const totalBarSpace: number = w - sidePadding * 2;
     const gap: number = totalBarSpace / barCount * 0.3;
@@ -369,7 +369,7 @@ struct StatsPage {
 
         Canvas(this.context)
           .width('100%')
-          .height(200)
+          .height(220)
           .backgroundColor(Theme.CARD)
           .onAreaChange((_oldValue: Area, newValue: Area) => {
             const newW: number = newValue.width as number;
