@@ -1,0 +1,18 @@
+{
+  "name": "schedule-app-backend",
+  "version": "1.0.0",
+  "description": "作息管理APP后端API服务",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node src/app.js",
+    "db:init": "mysql -u root -p < sql/init.sql"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mysql2": "^3.11.0",
+    "uuid": "^10.0.0"
+  }
+}

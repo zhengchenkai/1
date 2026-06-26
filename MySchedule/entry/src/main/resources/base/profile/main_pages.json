@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/LoginPage",
+    "pages/RegisterPage",
+    "pages/SchedulePage",
+    "pages/AddSchedulePage",
+    "pages/CheckinPage",
+    "pages/StatsPage",
+    "pages/ProfilePage"
+  ]
+}

@@ -1,0 +1,15 @@
+# HarmonyOS
+.idea/
+.hvigor/
+**/build/
+**/oh_modules/
+local.properties
+*.har
+
+# Backend
+node_modules/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
