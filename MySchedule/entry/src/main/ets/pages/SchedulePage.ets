@@ -188,6 +188,13 @@ struct SchedulePage {
     return '\u4ECA\u5929'
   }
 
+  private formatTime(timeStr: string): string {
+    if (timeStr.length >= 5) {
+      return timeStr.substring(0, 5)
+    }
+    return timeStr
+  }
+
   build() {
     Stack() {
       Column() {
@@ -320,15 +327,12 @@ struct SchedulePage {
             .textOverflow({ overflow: TextOverflow.Ellipsis })
 
           Text(Theme.getCategoryName(item.category))
-            .fontSize(11)
-            .fontColor(item.color)
-            .backgroundColor(item.color + '18')
-            .borderRadius(4)
-            .padding({ left: 8, right: 8, top: 3, bottom: 3 })
+            .fontSize(15)
+            .fontColor(Theme.TEXT_PRIMARY)
         }
         .width('100%')
 
-        Text(item.start_time + ' - ' + item.end_time)
+        Text(this.formatTime(item.start_time) + ' - ' + this.formatTime(item.end_time))
           .fontSize(13)
           .fontColor(Theme.TEXT_SECONDARY)
 

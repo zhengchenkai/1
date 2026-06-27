@@ -71,8 +71,8 @@ struct AddSchedulePage {
       this.title = item.title
       this.category = item.category
       this.color = item.color
-      this.startTime = item.start_time
-      this.endTime = item.end_time
+      this.startTime = item.start_time.length >= 5 ? item.start_time.substring(0, 5) : item.start_time
+      this.endTime = item.end_time.length >= 5 ? item.end_time.substring(0, 5) : item.end_time
       this.reminderMinutes = item.reminder_minutes !== null && item.reminder_minutes !== undefined
         ? item.reminder_minutes : 0
       this.repeatDays = item.repeat_days !== null && item.repeat_days !== undefined

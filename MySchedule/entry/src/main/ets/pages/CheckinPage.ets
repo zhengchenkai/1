@@ -220,28 +220,25 @@ struct CheckinPage {
 
       // 中间信息
       Column() {
-        Text(item.title)
-          .fontSize(15)
-          .fontWeight(FontWeight.Medium)
-          .fontColor(Theme.TEXT_PRIMARY)
-          .maxLines(1)
-          .textOverflow({ overflow: TextOverflow.Ellipsis })
-
         Row() {
-          Text(this.formatTime(item.start_time) + ' - ' + this.formatTime(item.end_time))
-            .fontSize(12)
-            .fontColor(Theme.TEXT_SECONDARY)
+          Text(item.title)
+            .fontSize(15)
+            .fontWeight(FontWeight.Medium)
+            .fontColor(Theme.TEXT_PRIMARY)
+            .layoutWeight(1)
+            .maxLines(1)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
 
           Text(Theme.getCategoryName(item.category))
-            .fontSize(10)
-            .fontColor(Theme.getCategoryColor(item.category))
-            .backgroundColor(this.getCategoryBgColor(item.category))
-            .borderRadius(4)
-            .padding({ left: 6, right: 6, top: 2, bottom: 2 })
-            .margin({ left: 8 })
+            .fontSize(15)
+            .fontColor(Theme.TEXT_PRIMARY)
         }
-        .margin({ top: 6 })
-        .alignItems(VerticalAlign.Center)
+        .width('100%')
+
+        Text(this.formatTime(item.start_time) + ' - ' + this.formatTime(item.end_time))
+          .fontSize(12)
+          .fontColor(Theme.TEXT_SECONDARY)
+          .margin({ top: 6 })
       }
       .layoutWeight(1)
       .alignItems(HorizontalAlign.Start)
