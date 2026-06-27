@@ -220,20 +220,12 @@ struct CheckinPage {
 
       // 中间信息
       Column() {
-        Row() {
-          Text(item.title)
-            .fontSize(15)
-            .fontWeight(FontWeight.Medium)
-            .fontColor(Theme.TEXT_PRIMARY)
-            .layoutWeight(1)
-            .maxLines(1)
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-
-          Text(Theme.getCategoryName(item.category))
-            .fontSize(15)
-            .fontColor(Theme.TEXT_PRIMARY)
-        }
-        .width('100%')
+        Text(item.title)
+          .fontSize(15)
+          .fontWeight(FontWeight.Medium)
+          .fontColor(Theme.TEXT_PRIMARY)
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
 
         Text(this.formatTime(item.start_time) + ' - ' + this.formatTime(item.end_time))
           .fontSize(12)

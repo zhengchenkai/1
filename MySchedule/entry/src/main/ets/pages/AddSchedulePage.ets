@@ -20,15 +20,15 @@ struct AddSchedulePage {
   @State isEditMode: boolean = false
   @State scheduleId: number = 0
   @State title: string = ''
-  @State startTime: string = '08:00'
-  @State endTime: string = '09:00'
+  @State startTime: string = ''
+  @State endTime: string = ''
   @State category: string = 'study'
   @State color: string = ''
   @State reminderMinutes: number = 0
   @State repeatDays: string = ''
-  @State startHour: number = 8
+  @State startHour: number = 0
   @State startMinute: number = 0
-  @State endHour: number = 9
+  @State endHour: number = 0
   @State endMinute: number = 0
 
   private categories: CategoryDef[] = [
@@ -52,6 +52,17 @@ struct AddSchedulePage {
 
   aboutToAppear(): void {
     this.color = Theme.getCategoryColor('study')
+    let now: Date = new Date()
+    this.startHour = now.getHours()
+    this.startMinute = now.getMinutes()
+    this.startTime = this.formatTime(this.startHour, this.startMinute)
+    let endH: number = this.startHour + 1
+    if (endH >= 24) {
+      endH = 23
+    }
+    this.endHour = endH
+    this.endMinute = this.startMinute
+    this.endTime = this.formatTime(this.endHour, this.endMinute)
     let params: Record<string, Object> = router.getParams() as Record<string, Object>
     if (params !== null && params !== undefined && params['id'] !== undefined) {
       let receivedId: number = params['id'] as number
@@ -182,6 +193,25 @@ struct AddSchedulePage {
       promptAction.showToast({ message: '\u7ED3\u675F\u65F6\u95F4\u5FC5\u987B\u665A\u4E8E\u5F00\u59CB\u65F6\u95F4' })
       return
     }
+    if (this.repeatDays.length === 0) {
+      promptAction.showDialog({
+        title: '\u672A\u9009\u62E9\u91CD\u590D\u65E5\u671F',
+        message: '\u672A\u52FE\u9009\u4EFB\u4F55\u65E5\u671F\uFF0C\u5C06\u9ED8\u8BA4\u4E3A\u6BCF\u5929\u91CD\u590D\u3002\u662F\u5426\u7EE7\u7EED\uFF1F',
+        buttons: [
+          { text: '\u53D6\u6D88', color: Theme.TEXT_SECONDARY },
+          { text: '\u7EE7\u7EED', color: Theme.PRIMARY }
+        ]
+      }).then((result: promptAction.ShowDialogSuccessResponse) => {
+        if (result.index === 1) {
+          this.performSave()
+        }
+      })
+      return
+    }
+    this.performSave()
+  }
+
+  async performSave(): Promise<void> {
     const body: Record<string, Object | null> = {};
     body['title'] = this.title;
     body['start_time'] = this.startTime;
