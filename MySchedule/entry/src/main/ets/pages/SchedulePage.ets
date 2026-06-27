@@ -64,9 +64,9 @@ struct SchedulePage {
     let now: Date = new Date()
     let todayDow: number = now.getDay()
     let dates: WeekDateItem[] = []
+    let dayLabels: string[] = ['\u65E5', '\u4E00', '\u4E8C', '\u4E09', '\u56DB', '\u4E94', '\u516D']
     for (let i: number = 0; i < 7; i++) {
       let d: Date = new Date(now.getTime() + (i - todayDow) * 86400000)
-      let dayLabels: string[] = ['\u65E5', '\u4E00', '\u4E8C', '\u4E09', '\u56DB', '\u4E94', '\u516D']
       let dateNum: string = d.getDate().toString()
       let monthDay: string = (d.getMonth() + 1).toString() + '/' + d.getDate().toString()
       let wd: WeekDateItem = {
@@ -197,7 +197,12 @@ struct SchedulePage {
         Stack({ alignContent: Alignment.BottomEnd }) {
           Scroll() {
             if (this.scheduleList.length === 0 && !this.isLoading) {
-              this.EmptyStateBuilder()
+              Column() {
+                this.EmptyStateBuilder()
+              }
+              .width('100%')
+              .layoutWeight(1)
+              .justifyContent(FlexAlign.Center)
             } else {
               Column({ space: 12 }) {
                 ForEach(this.scheduleList, (item: ScheduleItem) => {
@@ -205,7 +210,7 @@ struct SchedulePage {
                 }, (item: ScheduleItem) => item.id.toString())
               }
               .width('100%')
-              .padding({ left: 16, right: 16, top: 12, bottom: 90 })
+              .padding({ left: 16, right: 16, top: 12, bottom: 80 })
             }
           }
           .layoutWeight(1)
@@ -359,7 +364,6 @@ struct SchedulePage {
     Column({ space: 16 }) {
       Text('\u2600')
         .fontSize(64)
-        .margin({ top: 80 })
 
       Text(this.getSelectedDayLabel() + '\u8FD8\u6CA1\u6709\u65E5\u7A0B\u5B89\u6392')
         .fontSize(18)

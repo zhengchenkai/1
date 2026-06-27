@@ -40,11 +40,24 @@ struct ProfilePage {
   async loadMonthlyStats(): Promise<void> {
     try {
       const response: Record<string, Object> = await HttpUtils.get('/analysis/monthly');
-      const dataRaw: Object = response['data'];
-      const data: MonthlyStats = dataRaw as MonthlyStats;
-      this.totalCheckinDays = data.totalCheckinDays;
-      this.avgSleepMinutes = data.avgSleepMinutes;
-      this.streak = data.streak;
+
+      const sleepRaw: Object = response['sleep'];
+      if (sleepRaw !== null && sleepRaw !== undefined) {
+        const sleepData: Record<string, Object> = sleepRaw as Record<string, Object>;
+        const avgRaw: Object = sleepData['avg_duration'];
+        if (avgRaw !== null && avgRaw !== undefined) {
+          this.avgSleepMinutes = Math.round(avgRaw as number);
+        }
+      }
+
+      const checkinsRaw: Object = response['checkins'];
+      if (checkinsRaw !== null && checkinsRaw !== undefined) {
+        const checkinData: Record<string, Object> = checkinsRaw as Record<string, Object>;
+        const totalRaw: Object = checkinData['total_checkins'];
+        if (totalRaw !== null && totalRaw !== undefined) {
+          this.totalCheckinDays = totalRaw as number;
+        }
+      }
     } catch (err) {
       const error: Error = err as Error;
       promptAction.showToast({ message: '加载统计失败: ' + error.message });
